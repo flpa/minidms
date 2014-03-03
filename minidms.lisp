@@ -2,7 +2,7 @@
 
 (defpackage :com.github.flpa.minidms
   (:use :common-lisp)
-  (:export :create))
+  (:export :create :make-doc :search-docsi))
 
 (in-package :com.github.flpa.minidms)
 
@@ -22,8 +22,8 @@
 (defun finalize-new-doc (doc)
   "Finalizes a new document by setting properties not to be set by the user."
   (setf (slot-value doc `id) (new-uuid-string))
-  (setf (slot-value doc `creation-timestamp) (get-universal-time)))
-
+  (setf (slot-value doc `creation-timestamp) (get-universal-time))
+  doc)
 
 (defun new-uuid-string ()
   (format nil "~a" (get-universal-time)))
