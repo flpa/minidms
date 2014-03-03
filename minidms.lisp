@@ -34,4 +34,5 @@
 (defclass doc ()
   ((id)
    (title       :initarg :title       :initform (error "title is mandatory"))
-   (description :initarg :description :initform "")))
+   (description :initarg :description :initform "")
+   (creation-timestamp)))
