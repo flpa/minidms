@@ -6,12 +6,19 @@
 
 (in-package :com.github.flpa.minidms)
 
-
 (defvar *docs* nil)
 
 (defun create (doc)
   "Creates a new document and returns it.")
 ; needs ID generation, assigns date using get-time-of-day
+
+(defun finalize-new-doc (doc)
+  "Finalizes a new document by setting properties not to be set by the user."
+  (setf (slot-value doc `id) (new-uuid-string))
+  (setf (slot-value doc `creation-timestamp) (get-universal-time)))
+
+(defun new-uuid-string ()
+  (format nil "~a" (get-universal-time)))
 
 (defun search (query)
   "Searches documents")
