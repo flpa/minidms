@@ -1,16 +1,17 @@
 (in-package :cl-user)
 
 (defpackage :com.github.flpa.minidms
-  (:use :common-lisp))
+  (:use :common-lisp)
+  (:export :create))
 
 (in-package :com.github.flpa.minidms)
 
 
 (defvar *docs* nil)
 
-(defun create (obj)
-  "Creates a new document")
-; needs ID generation
+(defun create (doc)
+  "Creates a new document and returns it.")
+; needs ID generation, assigns date using get-time-of-day
 
 (defun search (query)
   "Searches documents")
@@ -29,3 +30,8 @@
 
 (defun delete (id)
   )
+
+(defclass doc ()
+  ((id)
+   (title       :initarg :title       :initform (error "title is mandatory"))
+   (description :initarg :description :initform "")))
