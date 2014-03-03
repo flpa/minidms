@@ -14,7 +14,11 @@
 
 (defun search (query)
   "Searches documents")
-;
+;gets predicate, maxcount, type?, order, return props
+
+(defun search-async ()
+  )
+
 
 
 (defun get (id)
