@@ -11,15 +11,19 @@
 (defun create (doc)
   "Creates a new document and returns it."
   (let ((new-doc (finalize-new-doc doc)))
-    (setf *docs* (append *docs* (list new-doc)))
+    (store-doc new-doc)
     new-doc))
 ; needs ID generation, assigns date using get-time-of-day
+
+(defun store-doc(doc)
+  (unless (typep doc `doc) (error "Won't store anything that's not a doc"))
+  (setf *docs* (append *docs* (list doc))))
 
 (defun finalize-new-doc (doc)
   "Finalizes a new document by setting properties not to be set by the user."
   (setf (slot-value doc `id) (new-uuid-string))
-  (setf (slot-value doc `creation-timestamp) (get-universal-time))
-  doc)
+  (setf (slot-value doc `creation-timestamp) (get-universal-time)))
+
 
 (defun new-uuid-string ()
   (format nil "~a" (get-universal-time)))
