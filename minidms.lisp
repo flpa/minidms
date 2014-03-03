@@ -20,7 +20,7 @@
 (defun new-uuid-string ()
   (format nil "~a" (get-universal-time)))
 
-(defun search (query)
+((defun search (query)
   "Searches documents")
 ;gets predicate, maxcount, type?, order, return props
 
@@ -43,3 +43,6 @@
    (title       :initarg :title       :initform (error "title is mandatory"))
    (description :initarg :description :initform "")
    (creation-timestamp)))
+
+(defun make-doc (title)
+   (make-instance `doc :title title))
