@@ -5,5 +5,15 @@
 
 (in-package :com.github.flpa.minidms-test)
 
-(define-test testtest
-  (assert-true nil))
+(define-test create-test
+  (let ((old-count (all-docs-count)))
+    (create (make-doc "ein doc"))
+    (assert-number-equal
+     (all-docs-count)
+     (+ 1 old-count))))
+
+(defun all-docs ()
+  (search-docs #'(lambda (x) t)))
+
+(defun all-docs-count ()
+  (length (all-docs)))
